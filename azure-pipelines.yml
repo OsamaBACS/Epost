@@ -1,0 +1,20 @@
+trigger:
+- none
+
+resources:
+  repositories:
+    - repository: devOpsTools
+      name: EP DevOps Templates/EP DevOps Templates
+      type: git
+      ref: main
+
+extends:
+  template: k8s-template.yml@devOpsTools
+  parameters:
+      solution: 'EP.Connect.AP.Users.API.sln'
+      imageName: 'ep-connect-admin-users-svc'
+      artifactDirectory: '$(build.artifactstagingdirectory)'
+      hostNameStaging: 'admin-epconnect-stg.epapps.ae'
+      hostNameProduction: 'admin-epconnect.epapps.ae'
+      sonarQubeProjectKey: 'emiratespost_EP-Connect-AP-Back-End-Users-API'
+      sonarQubeProjectName: 'EP Connect AP Back-End Users API'
